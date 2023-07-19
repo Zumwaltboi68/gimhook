@@ -108,7 +108,9 @@ setupGraphics();
 
 // Don't load mods if this is the UI, otherwise there could be some really dangerous mods
 
-if (new URL(location.href).protocol === "file:") {
+const currentURL = new URL(location.href);
+
+if (currentURL.protocol === "file:" || !(["/host", "/join"].includes(currentURL.pathname))) {
 	gimhook._shouldLoadMods = false;
 }
 
