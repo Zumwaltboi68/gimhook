@@ -34,12 +34,12 @@ export function rebuildPreload() {
 		};
 
 		modloader += `mod = gimhook._createMod(${JSON.stringify(metadata)});\n`;
-
+		modloader += "console.log(`Gimhook: loading ${mod.name}...`);\n";
 		modloader += fs.readFileSync(path.join(gimhookModDirectory, `${modName}.js`), "utf-8");
 		modloader += "\n";
 	});
 
-	modloader += "}\n"
+	modloader += "}\nconsole.log(\"Gimhook: Finished loading Gimhook!\");\n"
 
 	fs.writeFileSync(path.join(gimhookDirectory, "preload.js"), modloader);
 }

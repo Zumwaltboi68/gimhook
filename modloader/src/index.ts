@@ -106,8 +106,6 @@ console.log("Gimhook: loading graphics module...");
 
 setupGraphics();
 
-console.log("Gimhook: Finished loading Gimhook!");
-
 // Don't load mods if this is the UI, otherwise there could be some really dangerous mods
 
 if (new URL(location.href).protocol === "file:") {
