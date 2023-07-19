@@ -55,9 +55,9 @@ function setupUI() {
 			console.log(links[0]);
 
 			links.push((window as any).React.createElement(links[0].type, {
-				name: "Gimhook Docs",
-				description: "The work-in-progress documentation for Gimhook.",
-				link: "https://github.com/gimhook/gimhook/blob/master/docs/index.md"
+				name: "Gimhook SDK Documentation",
+				description: "The work-in-progress documentation for the Gimhook SDK.",
+				link: "https://github.com/gimhook/gimhook/blob/master/docs/sdk/index.md"
 			}));
 
 			return vDOMTree;
