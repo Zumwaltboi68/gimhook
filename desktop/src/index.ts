@@ -52,7 +52,7 @@ const createWindow = () => {
 		// Don't allow mods to trigger mod-manager-related events
 
 		if (!window.webContents.getURL().startsWith("file://")) {
-			log("warn", "select-mods event triggered, but this isn't the gimhook UI. THIS SHOULD NEVER HAPPEN!");
+			log("warn", "select-mods event triggered, but this isn't the Gimhook UI. THIS SHOULD NEVER HAPPEN!");
 			return;
 		}
 
@@ -72,7 +72,7 @@ const createWindow = () => {
 		// Don't allow mods to trigger mod-manager-related events
 
 		if (!window.webContents.getURL().startsWith("file://")) {
-			log("warn", "remove-mod event triggered, but this isn't the gimhook UI. THIS SHOULD NEVER HAPPEN!");
+			log("warn", "remove-mod event triggered, but this isn't the Gimhook UI. THIS SHOULD NEVER HAPPEN!");
 			return;
 		}
 
@@ -83,7 +83,7 @@ const createWindow = () => {
 		// Don't allow mods to trigger mod-manager-related events
 
 		if (!window.webContents.getURL().startsWith("file://")) {
-			log("warn", "enable-mod event triggered, but this isn't the gimhook UI. THIS SHOULD NEVER HAPPEN!");
+			log("warn", "enable-mod event triggered, but this isn't the Gimhook UI. THIS SHOULD NEVER HAPPEN!");
 			return;
 		}
 
@@ -94,7 +94,7 @@ const createWindow = () => {
 		// Don't allow mods to trigger mod-manager-related events
 
 		if (!window.webContents.getURL().startsWith("file://")) {
-			log("warn", "disable-mod event triggered, but this isn't the gimhook UI. THIS SHOULD NEVER HAPPEN!");
+			log("warn", "disable-mod event triggered, but this isn't the Gimhook UI. THIS SHOULD NEVER HAPPEN!");
 			return;
 		}
 
