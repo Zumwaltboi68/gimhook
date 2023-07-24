@@ -66,7 +66,8 @@ async function main() {
 		author,
 		license,
 		devDependencies: {} as any,
-		modDependencies: []
+		modDependencies: [],
+		modOptions: []
 	};
 
 	if (url !== "") {

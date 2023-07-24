@@ -1,3 +1,5 @@
+import { setOption } from "./database";
+
 const { app, shell, BrowserWindow, ipcMain, dialog } = require('electron');
 const { getDatabase, loadDatabase, rebuildPreload, getPreload, installMod, removeMod, disableMod, enableMod } = require('./database');
 const { enableLogging, disableLogging, log } = require('./logging');
@@ -99,6 +101,17 @@ const createWindow = () => {
 		}
 
 		disableMod(window, name);
+	});
+
+	ipcMain.on("set-option", (event, modName, key, value) => {
+		// Don't allow mods to trigger mod-manager-related events
+
+		if (!window.webContents.getURL().startsWith("file://")) {
+			log("warn", "set-option event triggered, but this isn't the Gimhook UI. THIS SHOULD NEVER HAPPEN!");
+			return;
+		}
+
+		setOption(modName, key, value);
 	});
 
 	window.on("page-title-updated", (e) => {

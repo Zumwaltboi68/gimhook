@@ -1,4 +1,4 @@
-import { Center, Text, Button, ScaleFade, Card, CardBody, CardFooter, Stack, Heading, ButtonGroup, useToast, AlertDialog, AlertDialogOverlay, useDisclosure, AlertDialogContent, AlertDialogBody, AlertDialogFooter, AlertDialogHeader, Alert, AlertDescription, AlertIcon, AlertTitle, Link } from '@chakra-ui/react';
+import { Center, Text, Button, ScaleFade, Card, CardBody, CardFooter, Stack, Heading, ButtonGroup, useToast, AlertDialog, AlertDialogOverlay, useDisclosure, AlertDialogContent, AlertDialogBody, AlertDialogFooter, AlertDialogHeader, Alert, AlertDescription, AlertIcon, AlertTitle, Link, Input, NumberInput, Slider, NumberDecrementStepper, NumberIncrementStepper, NumberInputField, NumberInputStepper, SliderFilledTrack, SliderThumb, SliderTrack, Checkbox, FormControl, FormLabel, Switch } from '@chakra-ui/react';
 import { useState, useEffect, useRef } from 'preact/hooks';
 import './styles/index.css';
 
@@ -61,6 +61,7 @@ export function App() {
 	const removeMod = typeof (globalThis as any).gimhook !== "undefined" ? (globalThis as any).gimhook._removeMod : () => {};
 	const enableMod = typeof (globalThis as any).gimhook !== "undefined" ? (globalThis as any).gimhook._enableMod : () => {};
 	const disableMod = typeof (globalThis as any).gimhook !== "undefined" ? (globalThis as any).gimhook._disableMod : () => {};
+	const setOption = typeof (globalThis as any).gimhook !== "undefined" ? (globalThis as any).gimhook._setOption : () => {};
 
 	// Smooth screen transitions, just because it looks nice :)
 
@@ -90,20 +91,61 @@ export function App() {
 				<Center style={{marginBottom: 16}}>
 					<Card minW="lg">
 						<CardBody>
-							{props.production ? null : (<Alert status="warning"><AlertIcon /><AlertTitle>This is a development build!</AlertTitle><AlertDescription>This mod file is only meant to be used for development purposes and is not production-ready.</AlertDescription></Alert>)}
+							{props.mod.production ? null : (<Alert status="warning"><AlertIcon /><AlertTitle>This is a development build!</AlertTitle><AlertDescription>This mod file is only meant to be used for development purposes and is not production-ready.</AlertDescription></Alert>)}
 
 							<Stack mt="6" spacing="3">
-								<Heading size="md">{props.name}</Heading>
-								<Text>{props.description}</Text>
-								<Text><b>Author</b>: {props.author}</Text>
-								<Text><b>Version</b>: {props.version}</Text>
-								<Text><b>License</b>: {props.license}</Text>
+								<Heading size="md">{props.mod.name}</Heading>
+								<Text>{props.mod.description}</Text>
+								<Text><b>Author</b>: {props.mod.author}</Text>
+								<Text><b>Version</b>: {props.mod.version}</Text>
+								<Text><b>License</b>: {props.mod.license}</Text>
+
+								{typeof props.mod.options !== "undefined" && props.mod.options.length != 0 ? <Heading marginTop={8} marginBottom={4} size="md">Options</Heading> : null}
+
+								{props.mod.options?.map((option: any) => {
+									const components: any = {
+										text: <Input onChange={(e: any) => {setOption(props.mod.name, option.name, e.target.value)}} />,
+										number: (
+											<NumberInput defaultValue={option.default} min={option.min} max={option.max} onChange={e => {setOption(props.mod.name, option.name, e)}}>
+												<NumberInputField />
+												<NumberInputStepper>
+													<NumberIncrementStepper />
+													<NumberDecrementStepper />
+												</NumberInputStepper>
+											</NumberInput>
+										),
+										slider: (
+											<Slider defaultValue={typeof option.default === "undefined" ? 0 : option.default} min={option.min} max={option.max} onChange={e => {setOption(props.mod.name, option.name, e)}}>
+												<SliderTrack>
+													<SliderFilledTrack />
+												</SliderTrack>
+												<SliderThumb />
+											</Slider>
+										),
+									};
+
+									const optionElement = components[option.type];
+
+									return option.type === "checkbox" ? (
+										/* @ts-ignore */
+										<Checkbox defaultChecked={option.default} onChange={e => {console.log(e.target.value === "on")}}>{option.name}</Checkbox>
+									) : option.type === "switch" ? (
+										<FormControl display="flex" alignItems="center">
+											<FormLabel mb="0">
+												{option.name}
+											</FormLabel>
+											<Switch defaultChecked={option.default} onChange={e => {console.log(e.target.value === "on")}} />
+										</FormControl>
+									) : (
+										<><Text>{option.name}:</Text>{optionElement}</>
+									);
+								})}
 							</Stack>
 						</CardBody>
 						<CardFooter>
 							<ButtonGroup spacing="2">
-								<Button onClick={() => {database.enabledMods.includes(props.name as never) ? disableMod(props.name) : enableMod(props.name)}}>
-									{database.enabledMods.includes(props.name as never) ? "Disable" : "Enable"}
+								<Button onClick={() => {database.enabledMods.includes(props.mod.name as never) ? disableMod(props.mod.name) : enableMod(props.mod.name)}}>
+									{database.enabledMods.includes(props.mod.name as never) ? "Disable" : "Enable"}
 								</Button>
 								<Button variant="solid" colorScheme="red" onClick={onOpen}>
 									Remove
@@ -121,7 +163,7 @@ export function App() {
 							</AlertDialogHeader>
 
 							<AlertDialogBody>
-								Are you sure you want to remove <b>{props.name}</b>?
+								Are you sure you want to remove <b>{props.mod.name}</b>?
 							</AlertDialogBody>
 
 							<AlertDialogFooter>
@@ -129,7 +171,7 @@ export function App() {
 									Cancel
 								</Button>
 
-								<Button colorScheme="red" onClick={() => {removeMod(props.name); onClose()}} ml={3}>
+								<Button colorScheme="red" onClick={() => {removeMod(props.mod.name); onClose()}} ml={3}>
 									Remove
 								</Button>
 							</AlertDialogFooter>
@@ -157,7 +199,7 @@ export function App() {
 					<Button onclick={openModSelectionDialog}>Install</Button>
 				</Center>
 
-				{database.mods.map((mod: any) => <Mod production={mod.production} name={mod.name} description={mod.description} author={mod.author} version={mod.version} sdkVersion={mod.sdkVersion} license={mod.license} />)}
+				{database.mods.map((mod: any) => <Mod mod={mod} />)}
 			</>
 		)
 	};

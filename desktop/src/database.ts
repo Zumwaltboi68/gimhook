@@ -7,7 +7,8 @@ let database = {
 	files: [],
 	modNames: [],
 	enabledMods: [],
-	mods: []
+	mods: [],
+	modOptions: {}
 };
 
 export function getDatabase() {
@@ -30,7 +31,7 @@ export function rebuildPreload() {
 	database.enabledMods.forEach(modName => {
 		const metadata = {
 			name: modName,
-			options: {}
+			options: typeof database.modOptions === "undefined" ? {} : database.modOptions[modName]
 		};
 
 		modloader += `mod = gimhook._createMod(${JSON.stringify(metadata)});\n`;
@@ -112,7 +113,7 @@ export function installMod(window, filename) {
 		return;
 	}
 
-	if (!("formatVersion" in metadata) || metadata.formatVersion !== 1) {
+	if (!("formatVersion" in metadata) || !([1, 2].includes(metadata.formatVersion))) {
 		log("error", `${filename} does not contain a valid formatVersion value. This most likely means that the mod was made with an older SDK version.`);
 		window.webContents.send("install-status", false, "", `${filename} does not contain a valid formatVersion value. This most likely means that the mod was made with an older SDK version.`);
 		return;
@@ -200,4 +201,16 @@ export function disableMod(window: any, modName: string) {
 	updateDatabase();
 	window.webContents.send("database-update", database);
 	log("info", `Disabled ${modName}`);
+}
+
+export function setOption(modName: string, key: string, value: any) {
+	if (!Object.keys(database).includes("modOptions")) {
+		database.modOptions = {};
+	}
+
+	if (!Object.keys(database.modOptions).includes(modName)) {
+		database.modOptions[modName] = {};
+	}
+
+	database.modOptions[modName][key] = value;
 }

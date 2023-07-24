@@ -71,6 +71,10 @@ if (navigator.userAgent.includes("gimhook")) {
 		return new Mod(metadata);
 	};
 
+	gimhook._setOption = (modName: string, key: string, value: any) => {
+		ipcRenderer.send("set-option", modName, key, value);
+	};
+
 	ipcRenderer.on("install-status", (event: Event, status: boolean, name: string, message: string) => {
 		gimhook._onInstallStatus(status, name, message);
 	});

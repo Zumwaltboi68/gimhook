@@ -27,15 +27,16 @@ async function _buildStage2(sourceDirectory, production, spinner) {
 	// Create the mod metadata object
 
 	let modMetadata = {
-		formatVersion: 1,
+		formatVersion: 2,
 		production,
 		name: path.basename(sourceDirectory),
-		slug: path.basename(sourceDirectory).toLowerCase().replace(" ", "-"),
-		description: "",
+		slug: path.basename(sourceDirectory).toLowerCase().replace(" ", "-").replace("_", "-"),
+		description: "A Gimhook mod.",
 		version: "1.0.0",
 		author: "unknown",
 		license: "unknown",
-		dependencies: []
+		dependencies: [],
+		options: []
 	};
 
 	// Safely copy metadata from package.json when possible
@@ -64,12 +65,15 @@ async function _buildStage2(sourceDirectory, production, spinner) {
 		modMetadata.license = metadata.license;
 	}
 
-	if (typeof metadata.modDependencies !== "undefined" && metadata.modDependencies !== "") {
+	if (typeof metadata.modDependencies !== "undefined") {
 		modMetadata.dependencies = metadata.modDependencies;
 	}
 
+	if (typeof metadata.modOptions !== "undefined") {
+		modMetadata.options = metadata.modOptions;
+	}
+
 	// Build the project with esbuild
-	// TODO: use async esbuild
 
 	try {
 		await esbuild.build({
