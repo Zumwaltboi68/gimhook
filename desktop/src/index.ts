@@ -111,7 +111,7 @@ const createWindow = () => {
 			return;
 		}
 
-		setOption(modName, key, value);
+		setOption(window, modName, key, value);
 	});
 
 	window.on("page-title-updated", (e) => {

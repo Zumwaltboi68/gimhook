@@ -203,7 +203,9 @@ export function disableMod(window: any, modName: string) {
 	log("info", `Disabled ${modName}`);
 }
 
-export function setOption(modName: string, key: string, value: any) {
+export function setOption(window: any, modName: string, key: string, value: any) {
+	log("info", `${key} (${modName}) -> ${value}`);
+
 	if (!Object.keys(database).includes("modOptions")) {
 		database.modOptions = {};
 	}
@@ -213,4 +215,6 @@ export function setOption(modName: string, key: string, value: any) {
 	}
 
 	database.modOptions[modName][key] = value;
+
+	updateDatabase();
 }

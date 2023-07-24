@@ -16,8 +16,29 @@ export function App() {
 		files: [],
 		modNames: [],
 		enabledMods: [],
-		mods: []
+		mods: [],
+		modOptions: {} as any
 	});
+
+	const getOption = (modName: string, optionName: string, defaultValue: any) => {
+		if (!Object.keys(database).includes("modOptions")) {
+			console.info(`${optionName} (${modName}): no`);
+			return defaultValue;
+		}
+
+		if (!Object.keys(database.modOptions).includes(modName)) {
+			console.info(`${optionName} (${modName}): no`);
+			return defaultValue;
+		}
+
+		if (!Object.keys(database.modOptions[modName]).includes(optionName)) {
+			console.info(`${optionName} (${modName}): no`);
+			return defaultValue;
+		}
+
+		console.info(`${optionName} (${modName}): yes`);
+		return database.modOptions[modName][optionName];
+	};
 
 	const toast = useToast();
 
@@ -103,10 +124,12 @@ export function App() {
 								{typeof props.mod.options !== "undefined" && props.mod.options.length != 0 ? <Heading marginTop={8} marginBottom={4} size="md">Options</Heading> : null}
 
 								{props.mod.options?.map((option: any) => {
+									const defaultValue = getOption(props.mod.name, option.name, option.type === "slider" ? (typeof option.default === "undefined" ? 0 : option.default) : option.default);
+
 									const components: any = {
-										text: <Input onChange={(e: any) => {setOption(props.mod.name, option.name, e.target.value)}} />,
+										text: <Input defaultValue={defaultValue} onChange={(e: any) => {setOption(props.mod.name, option.name, e.target.value)}} />,
 										number: (
-											<NumberInput defaultValue={option.default} min={option.min} max={option.max} onChange={e => {setOption(props.mod.name, option.name, e)}}>
+											<NumberInput defaultValue={defaultValue} min={option.min} max={option.max} onChange={e => {setOption(props.mod.name, option.name, e)}}>
 												<NumberInputField />
 												<NumberInputStepper>
 													<NumberIncrementStepper />
@@ -115,7 +138,7 @@ export function App() {
 											</NumberInput>
 										),
 										slider: (
-											<Slider defaultValue={typeof option.default === "undefined" ? 0 : option.default} min={option.min} max={option.max} onChange={e => {setOption(props.mod.name, option.name, e)}}>
+											<Slider defaultValue={defaultValue} min={option.min} max={option.max} onChange={e => {setOption(props.mod.name, option.name, e)}}>
 												<SliderTrack>
 													<SliderFilledTrack />
 												</SliderTrack>
@@ -128,13 +151,13 @@ export function App() {
 
 									return option.type === "checkbox" ? (
 										/* @ts-ignore */
-										<Checkbox defaultChecked={option.default} onChange={e => {console.log(e.target.value === "on")}}>{option.name}</Checkbox>
+										<Checkbox defaultChecked={defaultValue} onChange={e => {setOption(props.mod.name, option.name, e.target.checked)}}>{option.name}</Checkbox>
 									) : option.type === "switch" ? (
 										<FormControl display="flex" alignItems="center">
 											<FormLabel mb="0">
 												{option.name}
 											</FormLabel>
-											<Switch defaultChecked={option.default} onChange={e => {console.log(e.target.value === "on")}} />
+											<Switch defaultChecked={defaultValue} onChange={e => {setOption(props.mod.name, option.name, e.target.checked)}} />
 										</FormControl>
 									) : (
 										<><Text>{option.name}:</Text>{optionElement}</>
