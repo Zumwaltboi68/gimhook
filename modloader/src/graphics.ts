@@ -45,13 +45,12 @@ function setupGraphics() {
 	};
 
 	gimhook.graphics.player.getPosition = () => {
-		phaserCheck();
-		return gimhook.graphics.player.getPlayer().body.pos;
+		const position = gimhook.graphics.player.getPlayer()?.body.pos;
+		return typeof position === "undefined" ? {x: 0, y: 0} : position;
 	};
 
 	gimhook.graphics.player.setPosition = (x, y) => {
-		phaserCheck();
-		return gimhook.graphics.player.getPlayer().body.setPosition(x, y);
+		return gimhook.graphics.player.getPlayer()?.body.setPosition(x, y);
 	};
 
 	// Camera
@@ -62,13 +61,11 @@ function setupGraphics() {
 	};
 
 	gimhook.graphics.camera.getZoom = () => {
-		phaserCheck();
-		return gimhook.graphics.camera.getCamera().zoom;
+		return gimhook.graphics.camera.getCamera()?.zoom;
 	};
 
 	gimhook.graphics.camera.setZoom = (zoom) => {
-		phaserCheck();
-		gimhook.graphics.camera.getCamera().setZoom(zoom);
+		gimhook.graphics.camera.getCamera()?.setZoom(zoom);
 	};
 }
 
