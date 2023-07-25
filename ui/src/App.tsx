@@ -215,10 +215,6 @@ export function App() {
 				</Center>
 
 				<Center style={{marginTop: 16, marginBottom: 16}}>
-					<p><b>NOTE</b>: A mod distribution system for Gimhook is coming soon, but in the meantime you can share mods on <Link href="https://discord.gg/vBHcG76KGQ" color="blue">our discord server</Link>.</p>
-				</Center>
-
-				<Center style={{marginTop: 16, marginBottom: 16}}>
 					<Button onclick={openModSelectionDialog}>Install</Button>
 				</Center>
 
