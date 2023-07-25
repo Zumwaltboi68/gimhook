@@ -1,6 +1,6 @@
 {
   "name": "@gimhook/modloader",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The core modloader for gimhook",
   "main": "index.js",
   "scripts": {
