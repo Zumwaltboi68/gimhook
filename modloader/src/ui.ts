@@ -1,6 +1,10 @@
 declare var gimhook: any;
 
 function setupUI() {
+	// First of all, we need to setup the graphics-related stuff in the gimhook object.
+
+	gimhook.ui = {toaster: null};
+	
 	// Use the require() hook to make React into a global variable
 
 	gimhook.addHook("require", (moduleObject) => {
@@ -17,6 +21,24 @@ function setupUI() {
 		console.log(`Gimhook (ui): Detected React instance in ${moduleObject.id}`);
 
 		globalThis.React = moduleObject.exports;
+	});
+	
+	// Use the require() hook to intercept the toaster
+
+	gimhook.addHook("require", (moduleObject) => {
+		if (typeof moduleObject.exports !== "object") {
+			return; // We only want objects for the exports value
+		}
+
+		if (!("toast" in moduleObject.exports && "nonDismissMessage" in moduleObject.exports)) {
+			return; // We only want the module that we are looking for
+		}
+
+		console.log(`Gimhook (ui): Detected the toaster in ${moduleObject.id}`);
+		
+		gimhook.ui.toaster = moduleObject.exports.toast;
+		delete moduleObject.exports.toast;
+		moduleObject.exports.toast = (a, b) => gimhook.ui.toaster(a, b);
 	});
 
 	// Use the require() hook to add the Gimhook documentation to the help menu

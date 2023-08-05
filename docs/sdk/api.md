@@ -110,3 +110,12 @@ Input type: `number` (zoom)
 Output type: N/A  
 
 `gimhook.graphics.camera.setZoom` is used to set the zoom value of the currently active camera.
+
+## gimhook.ui.toaster
+
+Module: `ui`  
+Type: `Function`  
+Input type: `string` (message text), `any` (options)  
+Output type: N/A  
+
+`gimhook.ui.toaster` is the Gimkit toaster function, intercepted via Gimhook. You can use it to create notifications.
