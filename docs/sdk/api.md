@@ -57,7 +57,7 @@ Output type: N/A
 
 ## gimhook.graphics.player.getPlayer
 
-Module: `core`  
+Module: `graphics`  
 Type: `Function`  
 Input type: N/A  
 Output type: Player (I don't know the TypeScript type for it)  
@@ -66,7 +66,7 @@ Output type: Player (I don't know the TypeScript type for it)
 
 ## gimhook.graphics.player.getPosition
 
-Module: `core`  
+Module: `graphics`  
 Type: `Function`  
 Input type: N/A  
 Output type: Position (I don't know the TypeScript type for it)  
@@ -75,7 +75,7 @@ Output type: Position (I don't know the TypeScript type for it)
 
 ## gimhook.graphics.player.setPosition
 
-Module: `core`  
+Module: `graphics`  
 Type: `Function`  
 Input type: `number` (x), `number` (y)  
 Output type: N/A  
@@ -86,7 +86,7 @@ NOTE: No, you can't use this to teleport around the map and cheat. It is useless
 
 ## gimhook.graphics.camera.getCamera
 
-Module: `core`  
+Module: `graphics`  
 Type: `Function`  
 Input type: N/A  
 Output type: Camera (I don't know the TypeScript type for it)  
@@ -95,7 +95,7 @@ Output type: Camera (I don't know the TypeScript type for it)
 
 ## gimhook.graphics.camera.getZoom
 
-Module: `core`  
+Module: `graphics`  
 Type: `Function`  
 Input type: N/A  
 Output type: `number`  
@@ -104,7 +104,7 @@ Output type: `number`
 
 ## gimhook.graphics.camera.setZoom
 
-Module: `core`  
+Module: `graphics`  
 Type: `Function`  
 Input type: `number` (zoom)  
 Output type: N/A  
