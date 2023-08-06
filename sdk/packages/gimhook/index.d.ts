@@ -95,10 +95,10 @@ declare var gimhook: {
 
 	ui: {
 		/**
-  *	@property {boolean} toaster -	gimhook.ui.toaster is the Gimkit toaster function, intercepted via Gimhook. You can use it to create notifications.
+  *	@property {any} toaster -	gimhook.ui.toaster is the Gimkit toaster function, intercepted via Gimhook. You can use it to create notifications.
   */
 
-		toaster: boolean;
+		toaster: any;
 	}
 };
 
