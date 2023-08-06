@@ -92,6 +92,14 @@ declare var gimhook: {
 			setZoom: (zoom: number) => number;
 		};
 	};
+
+	ui: {
+		/**
+  *	@property {boolean} toaster -	gimhook.ui.toaster is the Gimkit toaster function, intercepted via Gimhook. You can use it to create notifications.
+  */
+
+		toaster: boolean;
+	}
 };
 
 /**
