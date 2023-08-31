@@ -31,7 +31,7 @@ if (navigator.userAgent.includes("gimhook")) {
 	window.open = (url: string) => {
 		// if the URL is external, open it in a new browser window
 
-		if (new URL(url).host !== "gimkit.com") {
+		if (new URL(url).host !== "gimkit.com" && new URL(url).host !== "www.gimkit.com") {
 			ipcRenderer.send("open-external", url);
 			return;
 		}
@@ -45,10 +45,11 @@ if (navigator.userAgent.includes("gimhook")) {
 		if (!link) {
 			return;
 		}
-
-		e.preventDefault();
-
-		window.open(link.href);
+		
+		if (new URL(link.href).host !== "gimkit.com" && new URL(link.href).host !== "www.gimkit.com") {
+			e.preventDefault();
+			window.open(link.href);
+		}
 	});
 
 	gimhook._openModSelectionDialog = () => {
