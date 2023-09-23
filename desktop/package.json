@@ -1,6 +1,6 @@
 {
   "name": "gimhook",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A desktop app and modloader for Gimkit.",
   "main": "app/index.js",
   "scripts": {

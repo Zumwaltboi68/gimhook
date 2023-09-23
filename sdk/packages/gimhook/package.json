@@ -1,6 +1,6 @@
 {
   "name": "gimhook",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "The core package of the Gimhook SDK.",
   "main": "index.js",
   "types": "index.d.ts",

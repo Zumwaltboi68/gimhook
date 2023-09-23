@@ -1,4 +1,41 @@
-import { Center, Text, Button, ScaleFade, Card, CardBody, CardFooter, Stack, Heading, ButtonGroup, useToast, AlertDialog, AlertDialogOverlay, useDisclosure, AlertDialogContent, AlertDialogBody, AlertDialogFooter, AlertDialogHeader, Alert, AlertDescription, AlertIcon, AlertTitle, Link, Input, NumberInput, Slider, NumberDecrementStepper, NumberIncrementStepper, NumberInputField, NumberInputStepper, SliderFilledTrack, SliderThumb, SliderTrack, Checkbox, FormControl, FormLabel, Switch } from '@chakra-ui/react';
+import {
+	Center,
+	Text,
+	Button,
+	ScaleFade,
+	Card,
+	CardBody,
+	CardFooter,
+	Stack,
+	Heading,
+	ButtonGroup,
+	useToast,
+	AlertDialog,
+	AlertDialogOverlay,
+	useDisclosure,
+	AlertDialogContent,
+	AlertDialogBody,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	Alert,
+	AlertDescription,
+	AlertIcon,
+	AlertTitle,
+	Input,
+	NumberInput,
+	Slider,
+	NumberDecrementStepper,
+	NumberIncrementStepper,
+	NumberInputField,
+	NumberInputStepper,
+	SliderFilledTrack,
+	SliderThumb,
+	SliderTrack,
+	Checkbox,
+	FormControl,
+	FormLabel,
+	Switch
+} from '@chakra-ui/react';
 import { useState, useEffect, useRef } from 'preact/hooks';
 import './styles/index.css';
 
