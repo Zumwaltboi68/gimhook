@@ -29,6 +29,12 @@ if (navigator.userAgent.includes("gimhook")) {
 	// On the electron app, we need to overwrite window.open so it doesn't open a new electron window when you click things on the Gimkit dashboard.
 	// @ts-ignore
 	window.open = (url: string) => {
+		// Handle blank URLs
+
+		if (url === "") {
+			return;
+		}
+
 		// if the URL is external, open it in a new browser window
 
 		if (new URL(url).host !== "gimkit.com" && new URL(url).host !== "www.gimkit.com") {
