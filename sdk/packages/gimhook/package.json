@@ -1,6 +1,6 @@
 {
   "name": "gimhook",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "The core package of the Gimhook SDK.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gimhook/gimhook.git"
+    "url": "git+https://codeberg.org/gimhook/gimhook.git"
   },
   "keywords": [
     "gimkit",
@@ -22,9 +22,9 @@
   "author": "hexaheximal",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gimhook/gimhook/issues"
+    "url": "https://codeberg.org/gimhook/gimhook/issues"
   },
-  "homepage": "https://github.com/gimhook/gimhook#readme",
+  "homepage": "https://codeberg.org/gimhook/gimhook",
   "dependencies": {
     "esbuild": "^0.17.19",
     "nanospinner": "^1.1.0"

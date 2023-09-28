@@ -1,6 +1,6 @@
 {
   "name": "create-gimhook",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "A simple tool for bootstrapping a Gimhook mod.",
   "main": "index.js",
   "bin": "index.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gimhook/gimhook.git"
+    "url": "git+https://codeberg.org/gimhook/gimhook.git"
   },
   "keywords": [
     "gimkit",
@@ -21,9 +21,9 @@
   "author": "hexaheximal",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gimhook/gimhook/issues"
+    "url": "https://codeberg.org/gimhook/gimhook/issues"
   },
-  "homepage": "https://github.com/gimhook/gimhook#readme",
+  "homepage": "https://codeberg.org/gimhook/gimhook",
   "devDependencies": {
     "@types/node": "^20.3.2",
     "esbuild": "^0.17.19",

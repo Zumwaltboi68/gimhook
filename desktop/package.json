@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gimhook/gimhook.git"
+    "url": "git+https://codeberg.org/gimhook/gimhook.git"
   },
   "keywords": [
     "gimkit",
@@ -28,9 +28,9 @@
   "author": "hexaheximal",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gimhook/gimhook/issues"
+    "url": "https://codeberg.org/gimhook/gimhook/issues"
   },
-  "homepage": "https://github.com/gimhook/gimhook#readme",
+  "homepage": "https://codeberg.org/gimhook/gimhook",
   "devDependencies": {
     "@types/node": "^20.3.2",
     "electron": "^24.3.1",
