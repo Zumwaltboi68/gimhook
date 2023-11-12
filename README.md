@@ -1,5 +1,7 @@
 # Gimhook
 
+[![Please don't upload to GitHub](https://nogithub.codeberg.page/badge.svg)](https://nogithub.codeberg.page)
+
 A desktop app and modloader for Gimkit.
 
 # How do I use this?
